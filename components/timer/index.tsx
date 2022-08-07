@@ -22,7 +22,7 @@ const Timer = (): ReactElement => {
     time: 0,
     initialTime: Date.now(),
     isStarted: false,
-    previousTimes: [12323, 23233, 434, 293023, 9293823, 2338],
+    previousTimes: [],
   } as TimerState);
   const leftTimerRef = useRef<NodeJS.Timeout>();
   const rightTimerRef = useRef<NodeJS.Timeout>();
