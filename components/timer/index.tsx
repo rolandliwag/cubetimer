@@ -18,7 +18,6 @@ type TimerState = {
 };
 
 const Timer = (): ReactElement => {
-  const styles = useStyles();
   const [{ time, isStarted, previousTimes }, setTimer] = useState({
     time: 0,
     initialTime: Date.now(),
@@ -29,6 +28,7 @@ const Timer = (): ReactElement => {
   const rightTimerRef = useRef<NodeJS.Timeout>();
   const leftButtonDown = useRef<string>("released");
   const rightButtonDown = useRef<string>("released");
+  const styles = useStyles({ time, isStarted });
 
   useEffect(() => {
     if (!isStarted) {
@@ -143,27 +143,27 @@ const Timer = (): ReactElement => {
         onTouchStart={handleButtonDown("left")}
         onTouchEnd={handleButtonRelease("left")}
       >
-        Left hand here
+        <div>Left hand here</div>
       </div>
       <div style={styles.times}>
-        <div className="App__previous-times">
+        <div style={styles.timeRecord}>
           {previousTimes.map((previous, index) => (
             <div className="App__previous-time" key={`${previous}-${index}`}>
               {renderTime(previous)}
             </div>
           ))}
         </div>
-        <div className="App__timer">{renderTime(time)}</div>
-        <div className="App__time-controls">
+        <div style={styles.timeDisplay}>{renderTime(time)}</div>
+        <div style={styles.timeControls}>
           <button
-            className="App__time-control-button"
+            style={styles.saveTimeButton}
             onClick={handleClickSaveTime}
             disabled={time === 0 || isStarted}
           >
             Save time
           </button>
           <button
-            className="App__time-control-button App__time-control-button--reset"
+            style={styles.resetTimeButton}
             onClick={handleClickResetTime}
             disabled={time === 0}
           >
@@ -177,7 +177,7 @@ const Timer = (): ReactElement => {
         onTouchStart={handleButtonDown("right")}
         onTouchEnd={handleButtonRelease("right")}
       >
-        Right hand here
+        <div>Right hand here</div>
       </div>
     </div>
   );
