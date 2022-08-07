@@ -47,6 +47,13 @@ const useStyles = ({
     timeRecord: {
       flex: "1 0 30%",
       padding: "1rem 0",
+      overflowY: "scroll",
+    },
+    timeRecordHeading: {
+      margin: "0 0 0.5rem",
+    },
+    timeRecordList: {
+      margin: 0,
     },
     timeDisplay: {
       flex: 1,
@@ -63,7 +70,7 @@ const useStyles = ({
     },
     saveTimeButton: {
       ...timeControlButtonStyle,
-      ...(!isStarted || time === 0 ? disabledButtonStyle : null),
+      ...(isStarted || time === 0 ? disabledButtonStyle : null),
     },
     resetTimeButton: {
       ...timeControlButtonStyle,

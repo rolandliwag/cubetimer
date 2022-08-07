@@ -22,7 +22,7 @@ const Timer = (): ReactElement => {
     time: 0,
     initialTime: Date.now(),
     isStarted: false,
-    previousTimes: [],
+    previousTimes: [12323, 23233, 434, 293023, 9293823, 2338],
   } as TimerState);
   const leftTimerRef = useRef<NodeJS.Timeout>();
   const rightTimerRef = useRef<NodeJS.Timeout>();
@@ -147,11 +147,21 @@ const Timer = (): ReactElement => {
       </div>
       <div style={styles.times}>
         <div style={styles.timeRecord}>
-          {previousTimes.map((previous, index) => (
-            <div className="App__previous-time" key={`${previous}-${index}`}>
-              {renderTime(previous)}
-            </div>
-          ))}
+          {previousTimes.length > 0 ? (
+            <>
+              <h2 style={styles.timeRecordHeading}>Previous times</h2>
+              <ul style={styles.timeRecordList}>
+                {previousTimes.map((previous, index) => (
+                  <li
+                    className="App__previous-time"
+                    key={`${previous}-${index}`}
+                  >
+                    {renderTime(previous)}
+                  </li>
+                ))}
+              </ul>
+            </>
+          ) : null}
         </div>
         <div style={styles.timeDisplay}>{renderTime(time)}</div>
         <div style={styles.timeControls}>
